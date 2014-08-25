@@ -6,13 +6,17 @@ public class ATMDispenseChain {
 	 
     public ATMDispenseChain() {
         // initialize the chain
-        this.c1 = new Dollar50Dispenser();
-        DispenseChain c2 = new Dollar20Dispenser();
-        DispenseChain c3 = new Dollar10Dispenser();
+        this.c1 = new Dollar100Dispenser();
+        DispenseChain c2 = new Dollar50Dispenser();
+        DispenseChain c3 = new Dollar20Dispenser();
+        DispenseChain c4 = new Dollar10Dispenser();
+        DispenseChain c5 = new Dollar2Dispenser();
 
         // set the chain of responsibility
         c1.setNextChain(c2);
         c2.setNextChain(c3);
+        c3.setNextChain(c4);
+        c4.setNextChain(c5);
     }
  
     public static void main(String[] args) {
@@ -22,8 +26,8 @@ public class ATMDispenseChain {
             System.out.println("Enter amount to dispense");
             Scanner input = new Scanner(System.in);
             amount = input.nextInt();
-            if (amount % 10 != 0) {
-                System.out.println("Amount should be in multiple of 10s.");
+            if (amount % 2 != 0) {
+                System.out.println("Amount should be in multiple of 2s.");
                 return;
             }
             // process the request
